@@ -14,7 +14,10 @@
                 <img class="header__logo__image" src="../images/logo/logo-orinoco.svg" alt="logo orinoco">
                 <p class="header__logo__title">Orinoco</p>    
             </div>
-            <a class="header__panier " href="index.html"><i class="icon-shopping-bag"></i></a>
+            <nav class="header__nav">
+                <a href="../index.html" class="header__nav__return-link">Accueil</a>
+                <a class="header__nav__panier " href="./panier.html"><i class="icon-shopping-bag"></i></a>
+            </nav>
         </header>
         <main class="container">
 
@@ -28,23 +31,32 @@
     
                     <div class="product__customer">
                         <div class="product__customer__color">
-                            <p>Choose color:</p>
-                            <div id="product-colors" class="product__customer__color__choice">
-                            </div>
+                            <label for="product-colors" style="display: block;">Choose a color:</label>
+                            <select id="product-colors" class="product__customer__color__choice">
+                                <option value="">--Please choose an option--</option>
+                            </select>
                         </div>
                         <div class="product__customer__quantity">
                             <label for="quantity" style="display: block;">
                                 Quantité :
                             </label>
                             <select name="quantity" autocomplete="off" id="product-quantity" tabindex="0" >
-
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
                             </select>
                         </div>
                     </div>
     
                     <div class="product__add-cart">
                         <p id="product-price" class="product__add-cart__price"></p>
-                        <div class="product__add-cart__button">add to cart</div>
+                        <button id="add-cart" type="button" class="product__add-cart__button" data-id="" data-name="" data-price="29,00" data-weight="97" >Ajouter au panier</button>
                     </div>    
                 </div>
             </div>

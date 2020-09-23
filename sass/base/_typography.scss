@@ -17,11 +17,23 @@ html{
     &__logo{
         &__title{
             font-family: belligerent;
+            font-size: 3rem;
+            @include small{
             font-size: 3vmax;
+            }
         }
     }
-    &__panier{
-    font-size: 3vmax;
+    &__nav{
+        &__panier{
+            font-size: 3rem;
+            @include small{
+            font-size: 3vmax;
+            }
+        }
+        &__return-link{
+            font-size: 2rem;
+            font-family: belligerent;
+        }
     }
 }
 

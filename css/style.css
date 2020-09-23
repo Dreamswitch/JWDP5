@@ -91,10 +91,24 @@ html {
 }
 .header__logo__title {
   font-family: belligerent;
-  font-size: 3vmax;
+  font-size: 3rem;
 }
-.header__panier {
-  font-size: 3vmax;
+@media all and (max-width: 600px) {
+  .header__logo__title {
+    font-size: 3vmax;
+  }
+}
+.header__nav__panier {
+  font-size: 3rem;
+}
+@media all and (max-width: 600px) {
+  .header__nav__panier {
+    font-size: 3vmax;
+  }
+}
+.header__nav__return-link {
+  font-size: 2rem;
+  font-family: belligerent;
 }
 
 .link {
@@ -162,9 +176,17 @@ html {
   margin-left: 0.5rem;
 }
 .header__logo__image {
-  width: 5vmax;
+  width: 4rem;
 }
-.header__panier {
+@media all and (max-width: 600px) {
+  .header__logo__image {
+    width: 4vmax;
+  }
+}
+.header__nav__return-link {
+  margin-right: 2rem;
+}
+.header__nav__panier {
   color: #8e5afc;
   margin-right: 2rem;
 }

@@ -11,11 +11,20 @@
             margin-left: .5rem;
         }
         &__image{
-            width: 5vmax;
+            width: 4rem;
+            @include small{
+            width: 4vmax;
+            }
         }
     }
-    &__panier{
-        color: $color-secondary;
-        margin-right: 2rem;
+    &__nav{
+        &__return-link{
+            margin-right: 2rem;
+        }
+
+        &__panier{
+            color: $color-secondary;
+            margin-right: 2rem;    
+        }
     }
 }

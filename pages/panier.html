@@ -9,14 +9,35 @@
         <script src="../js/main.js" async></script>
     </head>
     <body>
-        <header class="header">
-            <div class="header__logo">
-                <img class="header__logo__image" src="../images/logo/logo-orinoco.svg" alt="logo orinoco">
-                <p class="header__logo__title">Orinoco</p>    
-            </div>
-            <a class="header__panier " href="index.html"><i class="icon-shopping-bag"></i></a>
-        </header>
-        <main class="container-cart">
+      <header class="header">
+        <div class="header__logo">
+            <img class="header__logo__image" src="../images/logo/logo-orinoco.svg" alt="logo orinoco">
+            <p class="header__logo__title">Orinoco</p>    
+        </div>
+        <nav class="header__nav">
+            <a href="../index.html" class="header__nav__return-link">Accueil</a>
+        </nav>
+      </header>
+      <main class="container-cart">
+
+        <table class="table">
+          <thead>
+              <tr>
+                <th>Article</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+              </tr>
+          </thead>
+          <tbody id="cart-tablebody">
+            
+          </tbody>
+      </table>
+      
+      <p>Sous total : <span class="subtotal"></span>€</p>
+      
+      <button id="confirm-command">Passer la commande</button>
+
+
             <section class="product-case product-case--margin">
                 <img class="product-case__image" src="../images/teddy_1.jpg" alt="photo de teddy">
                 <div class="product-case__order">

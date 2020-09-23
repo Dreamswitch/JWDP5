@@ -13,7 +13,6 @@ fetch(`http://localhost:3000/api/teddies/${productId}`)
     const productName = document.getElementById('product-name');
     const productDescription= document.getElementById('product-description');
     const productColors= document.getElementById('product-colors');
-    const productQuantity= document.getElementById('product-quantity');
     const productPrice= document.getElementById('product-price');
     const productImage= document.getElementById('product-image');
 
@@ -29,26 +28,29 @@ fetch(`http://localhost:3000/api/teddies/${productId}`)
     const colors = data.colors;
     for(let color of colors){
         //récuperation des constantes provenant du DOM
-
+        
         //création de nouveaux elements
-        const productColorContainer = document.createElement("div");
-        const productColorInput = document.createElement("input");
-        const productColorLabel = document.createElement("label");
+        const productColorOption = document.createElement("option");
 
         //réglage des attributs
-        productColorInput.setAttribute("type","radio");
-        productColorInput.setAttribute("id",`${color}`);
-        productColorInput.setAttribute("name","color");
-        productColorLabel.setAttribute("for",`${color}`);
+        productColorOption.setAttribute("value",`${color}`);
 
         //ajout du texte
-        productColorLabel.textContent=` ${color}`;
+        productColorOption.textContent=`${color}`;
 
         //ajout dans le DOM
-        productColors.appendChild(productColorContainer);
-        productColorContainer.appendChild(productColorInput);
-        productColorContainer.appendChild(productColorLabel);
+        productColors.appendChild(productColorOption);
     }
 
     
+});
+const addCart = document.getElementById('add-cart');
+let quantity = function(){
+    return document.getElementById('product-quantity').value;
+};
+
+addCart.addEventListener("click",function(){
+
+    localStorage.setItem("quantity",`${quantity()}`);
+
 });
