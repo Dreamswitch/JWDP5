@@ -1,0 +1,32 @@
+.link{
+    width: 80%;
+    height:8rem;
+    margin: 1rem 0;
+    @include small{
+        height: 84vmin;
+    }
+    &__card{
+        @include small{
+            @include flex(space-evenly,center,column);
+        }
+        @include flex(space-evenly,center,row);    
+        background-color: $color-primary;
+        height: inherit;
+        width: 100%;
+
+        &__image{
+            height: 80%;
+            margin: 0 1rem;
+            @include small{
+                height: unset;
+                width: 80%;
+                margin: 1rem 0;
+            }    
+        }
+        &__description{
+            height: 80%;
+            @include flex(space-evenly,center,column);
+        }
+    }
+}
+

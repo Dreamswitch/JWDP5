@@ -1,0 +1,172 @@
+.home {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+}
+
+.product {
+  height: 92vh;
+  width: 100vw;
+}
+.product__wallpaper {
+  height: 60%;
+  width: 100%;
+}
+.product__description {
+  height: 40%;
+  margin: 0 5%;
+}
+.product__customer {
+  height: 30%;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 0 5%;
+}
+.product__customer__color__choice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.product__customer__color__quantity {
+  margin-right: 2rem;
+}
+.product__add-cart {
+  height: 30%;
+  background: #8e5afc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top-left-radius: 3rem;
+  border-bottom-left-radius: 3rem;
+}
+.product__add-cart__price {
+  color: #f3e9f1;
+  font-size: 2rem;
+  margin-left: 5%;
+}
+.product__add-cart__button {
+  background: #f3e9f1;
+  width: 40%;
+  height: 50%;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5%;
+}
+
+.container--rounded {
+  background-color: #f3e9f1;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  height: 40%;
+  position: absolute;
+  bottom: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+html {
+  font-size: 16px;
+}
+
+@font-face {
+  font-family: belligerent;
+  src: url("../fonts/belligerent/belligerent-webfont.woff");
+}
+.header__logo__title {
+  font-family: belligerent;
+  font-size: 3vmax;
+}
+.header__panier {
+  font-size: 3vmax;
+}
+
+.link {
+  width: 80%;
+  height: 8rem;
+  margin: 1rem 0;
+}
+@media all and (max-width: 600px) {
+  .link {
+    height: 84vmin;
+  }
+}
+.link__card {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  background-color: #f3e9f1;
+  height: inherit;
+  width: 100%;
+}
+@media all and (max-width: 600px) {
+  .link__card {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+.link__card__image {
+  height: 80%;
+  margin: 0 1rem;
+}
+@media all and (max-width: 600px) {
+  .link__card__image {
+    height: unset;
+    width: 80%;
+    margin: 1rem 0;
+  }
+}
+.link__card__description {
+  height: 80%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header {
+  height: 8vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  background: #f3e9f1;
+}
+.header__logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-left: 2rem;
+}
+.header__logo__title {
+  margin-left: 0.5rem;
+}
+.header__logo__image {
+  width: 5vmax;
+}
+.header__panier {
+  color: #8e5afc;
+  margin-right: 2rem;
+}
+
+/*# sourceMappingURL=style.css.map */

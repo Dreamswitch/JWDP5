@@ -1,0 +1,27 @@
+//--------init
+html{
+    font-size: 16px;
+}
+
+
+//----------font-face import
+
+@font-face {
+    font-family: belligerent;
+    src: url("../fonts/belligerent/belligerent-webfont.woff");
+}
+
+
+//---------header
+.header{
+    &__logo{
+        &__title{
+            font-family: belligerent;
+            font-size: 3vmax;
+        }
+    }
+    &__panier{
+    font-size: 3vmax;
+    }
+}
+
