@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="FR-fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>my basket</title>
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/custom-font.css">
+        <script src="../js/main.js" async></script>
+    </head>
+    <body>
+        <header class="header">
+            <div class="header__logo">
+                <img class="header__logo__image" src="../images/logo/logo-orinoco.svg" alt="logo orinoco">
+                <p class="header__logo__title">Orinoco</p>    
+            </div>
+            <a class="header__panier " href="index.html"><i class="icon-shopping-bag"></i></a>
+        </header>
+        <main class="container-cart">
+            <section class="product-case product-case--margin">
+                <img class="product-case__image" src="../images/teddy_1.jpg" alt="photo de teddy">
+                <div class="product-case__order">
+                    <h2 class="product-case__order__name">name</h2>
+                    <p class="product-case__order__quantity">(-) 10 (+)</p>
+                    <p class="product-case__order__price">20$/u</p>
+                </div>
+            </section>
+
+            <section class="total">
+                <p class="total__line">In Total :</p>
+                <p class="total__price">150$</p>
+            </section>
+
+            <form action="" method="get" class="form">
+                <div class="form">
+                  <label for="first-name">name: </label>
+                  <input type="text" name="first-name" id="first-name" required>
+                </div>
+                <div class="form">
+                  <label for="name">prénom: </label>
+                  <input type="text" name="name" id="name" required>
+                </div>
+                <div class="form">
+                  <label for="adresse">adresse: </label>
+                  <input type="textarea" name="adresse" id="adresse" required>
+                </div>
+                <div class="form">
+                  <label for="email">ville: </label>
+                  <input type="text" name="ville" id="ville" required>
+                </div>
+                <div class="form">
+                  <label for="email">Enter your email: </label>
+                  <input type="email" name="email" id="email" required>
+                </div>
+                <div class="form">
+                  <input type="submit" value="Commander">
+                </div>
+              </form>
+        </main>
+    </body>
+</html>

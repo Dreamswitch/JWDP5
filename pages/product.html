@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="FR-fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>product's page</title>
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/custom-font.css">
+        <script src="../js/product.js" defer></script>
+    </head>
+    <body>
+        <header class="header">
+            <div class="header__logo">
+                <img class="header__logo__image" src="../images/logo/logo-orinoco.svg" alt="logo orinoco">
+                <p class="header__logo__title">Orinoco</p>    
+            </div>
+            <a class="header__panier " href="index.html"><i class="icon-shopping-bag"></i></a>
+        </header>
+        <main class="container">
+
+            <div class="product">
+                <div id="product-image" class="product__wallpaper"></div>
+                <div class="container--rounded">
+                    <div class="product__description">
+                        <h1 id="product-name" class="product__description__name"></h1>
+                        <p id="product-description" class="product__description__content"></p>
+                    </div>
+    
+                    <div class="product__customer">
+                        <div class="product__customer__color">
+                            <p>Choose color:</p>
+                            <div id="product-colors" class="product__customer__color__choice">
+                            </div>
+                        </div>
+                        <div class="product__customer__quantity">
+                            <label for="quantity" style="display: block;">
+                                Quantité :
+                            </label>
+                            <select name="quantity" autocomplete="off" id="product-quantity" tabindex="0" >
+
+                            </select>
+                        </div>
+                    </div>
+    
+                    <div class="product__add-cart">
+                        <p id="product-price" class="product__add-cart__price"></p>
+                        <div class="product__add-cart__button">add to cart</div>
+                    </div>    
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
