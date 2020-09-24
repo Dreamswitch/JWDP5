@@ -1,0 +1,115 @@
+.cart{
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+  
+    &__head{
+        border-spacing: 0;
+        border-collapse: collapse;
+        line-height: 1.42857143;
+        vertical-align: top;
+        border-top: 1px solid #ddd;
+        &__row{
+
+            &__heading{
+                vertical-align: bottom;
+                border-bottom: 2px solid #ddd;
+                text-align: left;
+                padding: 5px;
+            }
+        }
+    }
+    &__body{
+        &__row{
+
+            &__data{
+                padding: 5px;
+                line-height: 1.42857143;
+                vertical-align: top;
+                border-top: 1px solid #ddd;
+            }
+        }
+    }
+    &__foot{
+        display: table-footer-group;
+        vertical-align: middle;
+        border-color: inherit;
+        &__row{
+
+            &__data{
+                line-height: 1.42857143;
+                vertical-align: top;
+                border-top: 2px solid #ddd;
+            }
+        }
+    }
+}
+
+.cart-product{
+    margin-right: -15px;
+    @include flex(flex-start,center,row);
+
+    &__container-1{
+        width: 20%;
+
+        &__image{
+            display: block;
+            width: 100% \9;
+            max-width: 100%;
+            height: auto;
+        }
+    }
+    &__container-2{
+        width: 80%;
+        margin: 10px 10px;
+
+        &__heading{
+
+        }
+        &__description{
+            
+            margin: 0 0 10px;
+        }
+    }
+}
+
+.product-quantity{
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.cart-btn-continue{
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #f0ad4e;
+    border-color: #eea236;
+}

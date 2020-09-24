@@ -6,7 +6,7 @@
         <title>my basket</title>
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/custom-font.css">
-        <script src="../js/main.js" async></script>
+        <script src="../js/cart.js" defer></script>
     </head>
     <body>
       <header class="header">
@@ -20,63 +20,101 @@
       </header>
       <main class="container-cart">
 
-        <table class="table">
-          <thead>
-              <tr>
-                <th>Article</th>
-                <th>Prix</th>
-                <th>Quantité</th>
+      <table class="cart">
+        <thead class="cart__head">
+          <tr class="cart__head__row">
+            <th class="cart__head__row__heading" style="width:50%">Product</th>
+            <th class="cart__head__row__heading" style="width:10%">Price</th>
+            <th class="cart__head__row__heading" style="width:8%">Quantity</th>
+            <th class="cart__head__row__heading text-center" style="width:22%">Subtotal</th>
+            <th class="cart__head__row__heading" style="width:10%"></th>
+          </tr>
+        </thead>
+
+        <tbody class="cart__body">
+
+          <tr class="cart__body__row">
+            <td class="cart__body__row__data">
+              <div class="cart-product">
+                <div class="cart-product__container-1">
+                  <img class="cart-product__container-1__image" src="http://placehold.it/100x100" alt="..."/>
+                </div>
+                <div class="cart-product__container-2">
+                  <h4  class="cart-product__container-2__heading">Product 1</h4>
+                  <p class="cart-product__container-2__description" id="product-description">Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p>
+                </div>
+              </div>
+            </td>
+            <td class="cart__body__row__data" id="product-price">$1.99</td>
+            <td class="cart__body__row__data">
+              <input id="product-quantity" type="number" class="product-quantity" value="1">
+            </td>
+            <td class="cart__body__row__data text-center" id="product-subTotal">1.99</td>
+            <td class="cart__body__row__data">
+              <button id="product-delete" class="button-delete-product-cart">delete</button>								
+            </td>
+          </tr>
+        </tbody>
+
+        <tfoot class="cart__foot">
+          <tr class="cart__foot__row">
+            <td class="cart__foot__row__data"><a class="cart-btn-continue" href="#"> Continue Shopping</a></td>
+            <td class="cart__foot__row__data" colspan="2" ></td>
+            <td class="cart__foot__row__data" class="text-center" rowspan="2" id="product-total">Total $1.99</td>
+            <td class="cart__foot__row__data"></td>
+          </tr>
+        </tfoot>
+      </table>
+<!--
+        <table class="cart">
+          <thead class="cart__head">
+              <tr class="cart__head__row">
+                <th class="cart__head__row__heading">image</th>
+                <th class="cart__head__row__heading">Article</th>
+                <th class="cart__head__row__heading">Quantité</th>
+                <th class="cart__head__row__heading">Prix</th>
               </tr>
           </thead>
-          <tbody id="cart-tablebody">
-            
+          <tbody class="cart__body" id="cart-tablebody">
           </tbody>
-      </table>
-      
-      <p>Sous total : <span class="subtotal"></span>€</p>
-      
-      <button id="confirm-command">Passer la commande</button>
+          <tfoot class="cart__foot">
+            <tr class="cart__foot__row">
+              <td class="cart__foot__row__data" colspan="3">Sous total : <span id="cart-subtotal"></span>€</td>
+            </tr>
+          </tfoot>
+        </table>
+
+        <button id="confirm-command">
+          Passer la commande
+        </button>
 
 
-            <section class="product-case product-case--margin">
-                <img class="product-case__image" src="../images/teddy_1.jpg" alt="photo de teddy">
-                <div class="product-case__order">
-                    <h2 class="product-case__order__name">name</h2>
-                    <p class="product-case__order__quantity">(-) 10 (+)</p>
-                    <p class="product-case__order__price">20$/u</p>
-                </div>
-            </section>
-
-            <section class="total">
-                <p class="total__line">In Total :</p>
-                <p class="total__price">150$</p>
-            </section>
-
-            <form action="" method="get" class="form">
-                <div class="form">
-                  <label for="first-name">name: </label>
-                  <input type="text" name="first-name" id="first-name" required>
-                </div>
-                <div class="form">
-                  <label for="name">prénom: </label>
-                  <input type="text" name="name" id="name" required>
-                </div>
-                <div class="form">
-                  <label for="adresse">adresse: </label>
-                  <input type="textarea" name="adresse" id="adresse" required>
-                </div>
-                <div class="form">
-                  <label for="email">ville: </label>
-                  <input type="text" name="ville" id="ville" required>
-                </div>
-                <div class="form">
-                  <label for="email">Enter your email: </label>
-                  <input type="email" name="email" id="email" required>
-                </div>
-                <div class="form">
-                  <input type="submit" value="Commander">
-                </div>
-              </form>
+        <form action="" method="get" class="form">
+            <div class="form">
+              <label for="first-name">name: </label>
+              <input type="text" name="first-name" id="first-name" required>
+            </div>
+            <div class="form">
+              <label for="name">prénom: </label>
+              <input type="text" name="name" id="name" required>
+            </div>
+            <div class="form">
+              <label for="adresse">adresse: </label>
+              <input type="textarea" name="adresse" id="adresse" required>
+            </div>
+            <div class="form">
+              <label for="email">ville: </label>
+              <input type="text" name="ville" id="ville" required>
+            </div>
+            <div class="form">
+              <label for="email">Enter your email: </label>
+              <input type="email" name="email" id="email" required>
+            </div>
+            <div class="form">
+              <input type="submit" value="Commander">
+            </div>
+          </form>
+          -->
         </main>
     </body>
 </html>

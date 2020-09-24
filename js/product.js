@@ -20,7 +20,7 @@ fetch(`http://localhost:3000/api/teddies/${productId}`)
     //ajout du texte
     productName.textContent=`${data.name}`;
     productDescription.textContent=`${data.description}`;
-    productPrice.textContent=`${data.price/100}$/u`;
+    productPrice.textContent=`${data.price/100}€/u`;
 
     //réglage des attributs
     productImage.setAttribute("style",`background:center / cover no-repeat url(${data.imageUrl})`);
@@ -41,16 +41,16 @@ fetch(`http://localhost:3000/api/teddies/${productId}`)
         //ajout dans le DOM
         productColors.appendChild(productColorOption);
     }
-
-    
 });
+
+//enregistrement des infos dans le localStorage
 const addCart = document.getElementById('add-cart');
-let quantity = function(){
-    return document.getElementById('product-quantity').value;
+
+let productQuantity = function(){
+    let quantity = document.getElementById('product-quantity').value;
+    return quantity;
 };
 
 addCart.addEventListener("click",function(){
-
-    localStorage.setItem("quantity",`${quantity()}`);
-
+    localStorage.setItem(`${productId}`,`${productQuantity()}`);
 });

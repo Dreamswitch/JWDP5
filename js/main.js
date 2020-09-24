@@ -33,7 +33,7 @@ fetch("http://localhost:3000/api/teddies")
         //ajout du contenu
         cardDescritptionName.textContent=`${element.name}`;
         cardDescritptionColor.textContent="plusieurs couleurs disponibles";
-        cardDescritptionPrice.textContent=`${element.price /100}$`;
+        cardDescritptionPrice.textContent=`${element.price /100}€ /u`;
 
         //ajout au DOM
         home.appendChild(link);
