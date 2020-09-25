@@ -1,11 +1,15 @@
 const home = document.getElementById('home');
 
-fetch("http://localhost:3000/api/teddies")
-.then(response => response.json())
-.then(function(data){
+const getProducts = async function(){
+ let response = await fetch("http://localhost:3000/api/teddies");
+ let data = await response.json();
+ return data ;
+};
 
-    
-    data.forEach(element => {
+const postDomElements = async () => {
+
+    const produits = await getProducts()
+    produits.map(produit => {
 
         //creation de la structure HTML des différents produits
         const link = document.createElement('a');
@@ -26,14 +30,14 @@ fetch("http://localhost:3000/api/teddies")
         cardDescritptionPrice.classList.add('link__card__description__price');
 
         //ajout des attributs
-        link.setAttribute("href",`./pages/product.html?id=${element._id}`)
-        cardImage.setAttribute("src",`${element.imageUrl}`);
-        cardImage.setAttribute("alt",`${element.name}`);
+        link.setAttribute("href",`./pages/product.html?id=${produit._id}`)
+        cardImage.setAttribute("src",`${produit.imageUrl}`);
+        cardImage.setAttribute("alt",`${produit.name}`);
 
         //ajout du contenu
-        cardDescritptionName.textContent=`${element.name}`;
+        cardDescritptionName.textContent=`${produit.name}`;
         cardDescritptionColor.textContent="plusieurs couleurs disponibles";
-        cardDescritptionPrice.textContent=`${element.price /100}€ /u`;
+        cardDescritptionPrice.textContent=`${produit.price /100}€ /u`;
 
         //ajout au DOM
         home.appendChild(link);
@@ -45,6 +49,6 @@ fetch("http://localhost:3000/api/teddies")
         cardDescritption.appendChild(cardDescritptionPrice);
 
     });
-
-});
-
+};
+    
+postDomElements();
