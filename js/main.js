@@ -36,7 +36,7 @@ const postDomElements = async () => {
 
         //ajout du contenu
         cardDescritptionName.textContent=`${produit.name}`;
-        cardDescritptionColor.textContent="plusieurs couleurs disponibles";
+        cardDescritptionColor.textContent="many colors availables";
         cardDescritptionPrice.textContent=`${produit.price /100}€ /u`;
 
         //ajout au DOM
