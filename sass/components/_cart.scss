@@ -28,6 +28,11 @@
                 line-height: 1.42857143;
                 vertical-align: top;
                 border-top: 1px solid #ddd;
+
+                @include small{
+                    vertical-align: middle;
+                }
+
             }
         }
     }
@@ -52,6 +57,9 @@
 
     &__container-1{
         width: 20%;
+        @include small{
+            width:unset;
+        }
 
         &__image{
             display: block;
@@ -59,16 +67,23 @@
             max-width: 100%;
             height: auto;
         }
+
     }
+
     &__container-2{
         width: 80%;
         margin: 10px 10px;
 
         &__heading{
-
+            @include small{
+                display: none;
+            }
         }
+        
         &__description{
-            
+            @include small{
+                display: none;
+            }
             margin: 0 0 10px;
         }
     }

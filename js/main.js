@@ -1,4 +1,6 @@
 const home = document.getElementById('home');
+const articleInCart = document.getElementById("article");
+
 
 const getProducts = async function(){
  let response = await fetch("http://localhost:3000/api/teddies");
@@ -52,3 +54,10 @@ const postDomElements = async () => {
 };
     
 postDomElements();
+
+const haribo =()=>{
+    articleInCart.textContent = `${JSON.parse(localStorage.getStorage).length}`;
+};
+if(localStorage.getStorage !== undefined){
+    haribo();
+};

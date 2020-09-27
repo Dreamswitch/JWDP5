@@ -1,11 +1,12 @@
 const product = document.getElementById('product');
 const addCart = document.getElementById('add-cart');
-
+const articleInCart = document.getElementById("article");
 
 //recupération de l'URL et de son paramètre
 const urlParameter = new URL(window.location.href);
 const productId = urlParameter.searchParams.get("id");
 
+//function de recupération de données sur le serveur
 const getProducts = async function(){
     let response = await fetch(`http://localhost:3000/api/teddies/${productId}`);
     let data = await response.json();
@@ -61,11 +62,12 @@ const productQuantity = () => {
 
 const storageControl = () => {
     const produitLocal = {id: productId, quantity: productQuantity()};
-    let inStorage = JSON.parse(localStorage.getStorage);
     let createNewStorage = [];
+    let StorageLength = localStorage.length;
 
     //controle si le panier n'est pas vide
-    if(localStorage.length !== 0){
+    if(StorageLength !== 0){
+        let inStorage = JSON.parse(localStorage.getStorage);
         let existe = false;
 
         //controle si le produit est deja dans le panier
@@ -86,11 +88,25 @@ const storageControl = () => {
         }
 
     }else{
-        noStorage.push(produitLocal);
+        createNewStorage.push(produitLocal);
         return JSON.stringify(createNewStorage);
     }
 
 };
 
+const haribo =()=>{
+    articleInCart.textContent = `${JSON.parse(localStorage.getStorage).length}`;
+};
+    
 
-addCart.addEventListener("click",() => localStorage.setItem(`getStorage`,`${storageControl()}`));
+addCart.addEventListener("click",() =>{
+    localStorage.setItem(`getStorage`,`${storageControl()}`);
+    haribo();
+});
+
+
+//
+
+if(localStorage.getStorage !== undefined){
+    haribo();
+};
