@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .home {
   display: flex;
   justify-content: space-evenly;
@@ -250,6 +251,9 @@ html {
   .cart__body__row__data {
     vertical-align: middle;
   }
+}
+.cart__body__row__data--euro::after {
+  content: "€";
 }
 .cart__foot {
   display: table-footer-group;
