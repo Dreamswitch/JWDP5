@@ -2,10 +2,10 @@ const home = document.getElementById('home');
 const articleInCart = document.getElementById("article");
 
 
-const getProducts = async function(){
- let response = await fetch("http://localhost:3000/api/teddies");
- let data = await response.json();
- return data ;
+const getProducts = async function () {
+    let response = await fetch("http://localhost:3000/api/teddies");
+    let data = await response.json();
+    return data;
 };
 
 const postDomElements = async () => {
@@ -21,7 +21,7 @@ const postDomElements = async () => {
         const cardDescritptionName = document.createElement('h2');
         const cardDescritptionColor = document.createElement('p');
         const cardDescritptionPrice = document.createElement('p');
-        
+
         //ajout des classes
         link.classList.add('link');
         card.classList.add('link__card');
@@ -32,14 +32,14 @@ const postDomElements = async () => {
         cardDescritptionPrice.classList.add('link__card__description__price');
 
         //ajout des attributs
-        link.setAttribute("href",`./pages/product.html?id=${produit._id}`)
-        cardImage.setAttribute("src",`${produit.imageUrl}`);
-        cardImage.setAttribute("alt",`${produit.name}`);
+        link.setAttribute("href", `./pages/product.html?id=${produit._id}`)
+        cardImage.setAttribute("src", `${produit.imageUrl}`);
+        cardImage.setAttribute("alt", `${produit.name}`);
 
         //ajout du contenu
-        cardDescritptionName.textContent=`${produit.name}`;
-        cardDescritptionColor.textContent="many colors availables";
-        cardDescritptionPrice.textContent=`${produit.price /100}€ /u`;
+        cardDescritptionName.textContent = `${produit.name}`;
+        cardDescritptionColor.textContent = "many colors availables";
+        cardDescritptionPrice.textContent = `${produit.price / 100}€ /u`;
 
         //ajout au DOM
         home.appendChild(link);
@@ -52,7 +52,7 @@ const postDomElements = async () => {
 
     });
 };
-    
+
 
 const widgetQuantities = async (quantities) => {
     const widget = document.getElementById("article");
@@ -62,7 +62,7 @@ const widgetQuantities = async (quantities) => {
 
 const getQuantities = async () => {
     const inStorage = JSON.parse(localStorage.getStorage);
-    return await Promise.all( inStorage.map( produit => {
+    return await Promise.all(inStorage.map(produit => {
         return produit
     }));
 };

@@ -12,8 +12,8 @@ const getProducts = async (selector) => {
 
     const inStorage = JSON.parse(localStorage.getStorage);
 
-    switch(selector){
-        case "displayCart" :
+    switch (selector) {
+        case "displayCart":
             return await Promise.all(inStorage.map(async produit => {
                 //recupere les données dans la base
                 const teddie = await getServer(produit.id);
@@ -23,17 +23,17 @@ const getProducts = async (selector) => {
                 serverPrice[`${produit.id}`] = `${teddie.price}`;
                 return teddie;
             }));
-        case "updateTotal" :
+        case "updateTotal":
             return await Promise.all(inStorage.map(async produit => {
                 //recupere les données dans la base
-/*                 const teddie = await getServer(produit.id); //méthode appel API
-                teddie.sousTotal = produit.quantity * (teddie.price / 100);
- */             
-            produit.sousTotal = (produit.quantity) * (serverPrice[`${produit.id}`]/100);
-            return produit;
+                /*                 const teddie = await getServer(produit.id); //méthode appel API
+                                teddie.sousTotal = produit.quantity * (teddie.price / 100);
+                 */
+                produit.sousTotal = (produit.quantity) * (serverPrice[`${produit.id}`] / 100);
+                return produit;
             }));
     }
-    
+
 };
 
 const createTeddieRow = (teddie, produit) => {
@@ -73,10 +73,10 @@ const createTeddieRow = (teddie, produit) => {
     cartProductContainerDeux.classList.add('cart-product__container-2');
     cartProductContainerDeuxHeading.classList.add('cart-product__container-2__heading');
     cartProductContainerDeuxDescription.classList.add('cart-product__container-2__description');
-    cartBodyRowDataDeux.classList.add('cart__body__row__data',"cart__body__row__data--euro");
+    cartBodyRowDataDeux.classList.add('cart__body__row__data', "cart__body__row__data--euro");
     cartBodyRowDataTrois.classList.add('cart__body__row__data');
     productQuantity.classList.add('product-quantity');
-    cartBodyRowDataQuatre.classList.add('cart__body__row__data',"cart__body__row__data--euro",'text-center');
+    cartBodyRowDataQuatre.classList.add('cart__body__row__data', "cart__body__row__data--euro", 'text-center');
     cartBodyRowDataCinq.classList.add('cart__body__row__data');
     productDelete.classList.add('button-delete-product-cart');
 
@@ -84,8 +84,9 @@ const createTeddieRow = (teddie, produit) => {
     cartProductContainerUnImage.setAttribute("src", `${teddie.imageUrl}`);
     cartProductContainerUnImage.setAttribute("alt", `photo de teddies: ${teddie.name}`);
     productQuantity.setAttribute("type", `number`);
+    productQuantity.setAttribute("min", `1`);
     productQuantity.setAttribute("value", `${produit.quantity}`);
-    cartBodyRow.setAttribute("id",`${(teddie.name).replace(/ /g,"_")}`);
+    cartBodyRow.setAttribute("id", `${(teddie.name).replace(/ /g, "_")}`);
 
     //ajout dans le DOM
     cartBody.appendChild(cartBodyRow);
@@ -104,8 +105,8 @@ const createTeddieRow = (teddie, produit) => {
     cartBodyRowDataCinq.appendChild(productDelete);
 
     //ajout de la fonction pour supprimer un produit
-    productDelete.addEventListener("click",()=>{
-        const teddieRow = document.getElementById(`${(teddie.name).replace(/ /g,"_")}`);
+    productDelete.addEventListener("click", () => {
+        const teddieRow = document.getElementById(`${(teddie.name).replace(/ /g, "_")}`);
         teddieRow.remove();
         deleteInStorage(produit);
         updateTotal();
@@ -113,9 +114,9 @@ const createTeddieRow = (teddie, produit) => {
     });
 
     //ajout de la fonction de changement de quantité
-    productQuantity.addEventListener("change",()=>{
-        const teddieQuantity = document.querySelector(`#${(teddie.name).replace(/ /g,"_")} .product-quantity`);
-        produit.sousTotal = (teddieQuantity.value)*(teddie.price/100);
+    productQuantity.addEventListener("change", () => {
+        const teddieQuantity = document.querySelector(`#${(teddie.name).replace(/ /g, "_")} .product-quantity`);
+        produit.sousTotal = (teddieQuantity.value) * (teddie.price / 100);
         cartBodyRowDataQuatre.textContent = `${produit.sousTotal}`;
         produit.quantity = teddieQuantity.value;
         savingInStorage(produit);
@@ -133,24 +134,24 @@ const displayCart = async () => {
 
 const savingInStorage = (produit) => {
     const inStorage = JSON.parse(localStorage.getStorage);
-    inStorage.map(teddie =>{
-        if(teddie.id == produit.id){
+    inStorage.map(teddie => {
+        if (teddie.id == produit.id) {
             teddie.quantity = produit.quantity;
             let newDataStorage = JSON.stringify(inStorage);
-            localStorage.setItem(`getStorage`,`${newDataStorage}`);        
+            localStorage.setItem(`getStorage`, `${newDataStorage}`);
         }
     });
 };
 
 const deleteInStorage = (produit) => {
     const inStorage = JSON.parse(localStorage.getStorage);
-    inStorage.map(teddie =>{
-        if(teddie.id == produit.id){
+    inStorage.map(teddie => {
+        if (teddie.id == produit.id) {
             const index = inStorage.indexOf(teddie);
             if (index > -1) {
                 inStorage.splice(index, 1);
                 let newDataStorage = JSON.stringify(inStorage);
-                localStorage.setItem(`getStorage`,`${newDataStorage}`);        
+                localStorage.setItem(`getStorage`, `${newDataStorage}`);
             }
         }
     });
@@ -170,3 +171,39 @@ const widgetQuantities = async (quantities) => {
 
 displayCart();
 widgetQuantities();
+
+
+//partie formulaire--------------------------------->
+
+    const name = document.getElementById("name");
+    const firstName = document.getElementById("first-name");
+    const adress = document.getElementById("adress");
+    const town = document.getElementById("town");
+    const email = document.getElementById("email");
+
+    //mes regexs ----------------------->
+    const isRegexString = /^[a-zA-Z- ]*$/ ;
+    const isRegexNoSpecial = /^[a-zA-Z0-9 ]*$/ ;
+    const isRegexMail = /^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$/
+
+    //fonction de controle de regex
+    const regexControl = (variableToControl,typeOfRegex)=>{
+        variableToControl.addEventListener("change",()=>{
+            if(!variableToControl.validity.valid){
+                variableToControl.style.backgroundColor="hsla(349, 100%, 50%, 0.3)";
+            }
+            
+            if(typeOfRegex.test(variableToControl.value)){
+                alert("données OK");
+            }else{
+                alert("don't kidding me, mother fucker");
+            }
+        });
+    };
+    
+    // let's go, all control is comming
+    regexControl(name,isRegexString);
+    regexControl(firstName,isRegexString);
+    regexControl(town,isRegexString);
+    regexControl(adress,isRegexNoSpecial);
+    regexControl(email,isRegexMail);

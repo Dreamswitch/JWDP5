@@ -47,56 +47,34 @@
           </tr>
         </tfoot>
       </table>
-<!--
-        <table class="cart">
-          <thead class="cart__head">
-              <tr class="cart__head__row">
-                <th class="cart__head__row__heading">image</th>
-                <th class="cart__head__row__heading">Article</th>
-                <th class="cart__head__row__heading">Quantité</th>
-                <th class="cart__head__row__heading">Prix</th>
-              </tr>
-          </thead>
-          <tbody class="cart__body" id="cart-tablebody">
-          </tbody>
-          <tfoot class="cart__foot">
-            <tr class="cart__foot__row">
-              <td class="cart__foot__row__data" colspan="3">Sous total : <span id="cart-subtotal"></span>€</td>
-            </tr>
-          </tfoot>
-        </table>
-
-        <button id="confirm-command">
-          Passer la commande
-        </button>
 
 
-        <form action="" method="get" class="form">
-            <div class="form">
-              <label for="first-name">name: </label>
-              <input type="text" name="first-name" id="first-name" required>
-            </div>
-            <div class="form">
-              <label for="name">prénom: </label>
-              <input type="text" name="name" id="name" required>
-            </div>
-            <div class="form">
-              <label for="adresse">adresse: </label>
-              <input type="textarea" name="adresse" id="adresse" required>
-            </div>
-            <div class="form">
-              <label for="email">ville: </label>
-              <input type="text" name="ville" id="ville" required>
-            </div>
-            <div class="form">
-              <label for="email">Enter your email: </label>
-              <input type="email" name="email" id="email" required>
-            </div>
-            <div class="form">
-              <input type="submit" value="Commander">
-            </div>
-          </form>
-          -->
+      <form action="" method="get" class="form">
+          <div class="form">
+            <label for="first-name">name: </label>
+            <input type="text" name="first-name" id="first-name" required pattern="[A-Za-z]*" minlength="3" maxlength="20">
+          </div>
+          <div class="form">
+            <label for="name">prénom: </label>
+            <input type="text" name="name" id="name" required pattern="[A-Za-z- ]*" minlength="3" maxlength="20">
+          </div>
+          <div class="form">
+            <label for="adress">adresse: </label>
+            <input type="textarea" name="adress" id="adress" required minlength="5" maxlength="40">
+          </div>
+          <div class="form">
+            <label for="town">ville: </label>
+            <input type="text" name="town" id="town" required pattern="[A-Za-z- ]*" minlength="2" maxlength="20">
+          </div>
+          <div class="form">
+            <label for="email">Enter your email: </label>
+            <input type="email" name="email" id="email" required>
+          </div>
+          <div class="form">
+            <input type="submit" value="Commander">
+          </div>
+        </form>
+
         </main>
     </body>
 </html>
