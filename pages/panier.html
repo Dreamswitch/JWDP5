@@ -40,7 +40,7 @@
 
         <tfoot class="cart__foot">
           <tr class="cart__foot__row">
-            <td class="cart__foot__row__data"><a class="cart-btn-continue" href="../index.html"> Continue Shopping</a></td>
+            <td class="cart__foot__row__data"><a class="cart-btn cart-btn--continue" href="../index.html"> Continue Shopping</a></td>
             <td class="cart__foot__row__data" colspan="2" ></td>
             <td class="cart__foot__row__data" class="text-center" rowspan="2" id="product-total">Total = </td>
             <td class="cart__foot__row__data"></td>
@@ -49,29 +49,29 @@
       </table>
 
 
-      <form action="" method="get" class="form">
+      <form id="form" action="" method="get" class="form">
           <div class="form">
-            <label for="first-name">name: </label>
-            <input type="text" name="first-name" id="first-name" required pattern="[A-Za-z]*" minlength="3" maxlength="20">
+            <label for="first-name">first-name: </label>
+            <input type="text" name="first-name" id="first-name" required pattern="(([^ ][a-zA-ZÀ-Ýà-ï]*)( |-)?)([a-zA-ZÀ-Ýà-ï]*)?" minlength="3" maxlength="20">
           </div>
           <div class="form">
-            <label for="name">prénom: </label>
-            <input type="text" name="name" id="name" required pattern="[A-Za-z- ]*" minlength="3" maxlength="20">
+            <label for="name">last-name: </label>
+            <input type="text" name="name" id="name" required pattern="(([^ ][a-zA-ZÀ-Ýà-ï]*)( |-)?)([a-zA-ZÀ-Ýà-ï]*)?" minlength="3" maxlength="20">
           </div>
           <div class="form">
-            <label for="adress">adresse: </label>
-            <input type="textarea" name="adress" id="adress" required minlength="5" maxlength="40">
+            <label for="adress">adress: </label>
+            <input type="textarea" name="adress" id="adress" required pattern="(([^ ][a-zA-Z0-9À-Ýà-ï]*)( |-)?)*" minlength="5" maxlength="40">
           </div>
           <div class="form">
-            <label for="town">ville: </label>
-            <input type="text" name="town" id="town" required pattern="[A-Za-z- ]*" minlength="2" maxlength="20">
+            <label for="town">city: </label>
+            <input type="text" name="town" id="town" required pattern="(([^ ][a-zA-Z0-9À-Ýà-ï]*)( )?)*" minlength="2" maxlength="20">
           </div>
           <div class="form">
             <label for="email">Enter your email: </label>
             <input type="email" name="email" id="email" required>
           </div>
           <div class="form">
-            <input type="submit" value="Commander">
+            <input id="submitForm" type="submit" value="Commander">
           </div>
         </form>
 
