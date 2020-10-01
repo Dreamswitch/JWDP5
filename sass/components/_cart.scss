@@ -79,7 +79,7 @@
         &--empty{
             display: block;
             padding: 1% 3%;
-            margin:25% auto 0 auto;
+            margin:0 auto;
             font-size: 3vmax;
             font-weight: 600;
             line-height: 5vmax;
@@ -132,8 +132,9 @@
     &-title{
         &--empty-cart{
             color:$color-secondary;
-            margin: 40% auto;
+            margin: 15vmax auto;
             width: 80%;
+            text-align: center;
         }
     }
     

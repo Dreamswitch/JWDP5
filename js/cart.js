@@ -1,5 +1,26 @@
+
+const emptyCartLoader = () => {
+    const main = document.querySelector("main");
+    main.parentNode.removeChild(main);
+
+    const body = document.querySelector("body");
+
+    const title = document.createElement("h1");
+    title.textContent = "votre panier est vide";
+    title.classList.add("cart-title", "cart-title--empty-cart");
+
+    const button = document.createElement("a");
+    button.textContent = "retourner a l'accueil";
+    button.classList.add("cart-btn", "cart-btn--empty");
+    button.setAttribute("href", "../index.html");
+
+    body.appendChild(title);
+    body.appendChild(button);
+};
+
+
 if (!localStorage.getStorage) {
-    emptyPageLoader();
+    emptyCartLoader();
 } else {
     const serverPrice = [];
 
@@ -7,6 +28,24 @@ if (!localStorage.getStorage) {
         let response = await fetch(`http://localhost:3000/api/teddies/${produitId}`);
         let data = await response.json();
         return data;
+    };
+
+    const postServer = async (order) => {
+        try {
+            const response = await fetch("http://localhost:3000/api/teddies/order", {
+                method: "POST",
+                body: JSON.stringify(order),
+                headers: { "Content-Type": "application/json" }
+            });
+            const data = await response.json();
+            if (response.ok) {
+                return data;
+            } else {
+                throw new error("probleme communication avec le serveur")
+            }
+        } catch (error) {
+            console.error(error);
+        }
     };
 
 
@@ -20,6 +59,8 @@ if (!localStorage.getStorage) {
                     //recupere les données dans la base
                     const teddie = await getServer(produit.id);
                     teddie.sousTotal = produit.quantity * (teddie.price / 100);
+                    inStorage.price = teddie.price/100;
+                    localStorage.setItem("getStorage")
                     createTeddieRow(teddie, produit);
                     //sauvegarde des prix du serveur
                     serverPrice[`${produit.id}`] = `${teddie.price}`;
@@ -28,13 +69,17 @@ if (!localStorage.getStorage) {
             case "updateTotal":
                 return await Promise.all(inStorage.map(async produit => {
                     //recupere les données dans la base
-                    /*                 const teddie = await getServer(produit.id); //méthode appel API
-                                    teddie.sousTotal = produit.quantity * (teddie.price / 100);
+                    /*                     const teddie = await getServer(produit.id); //méthode appel API
+                                        teddie.sousTotal = produit.quantity * (teddie.price / 100);
                      */
                     produit.sousTotal = (produit.quantity) * (serverPrice[`${produit.id}`] / 100);
                     return produit;
                 }));
-        }
+            case "productOrder":
+                return await Promise.all(inStorage.map(async product => {
+                    return product.id;
+                }));
+        };
 
     };
 
@@ -116,7 +161,7 @@ if (!localStorage.getStorage) {
             //efface le localStorage si le panier est vide
             if (JSON.parse(localStorage.getStorage).length === 0) {
                 localStorage.clear();
-                emptyPageLoader();
+                emptyCartLoader();
             }
         });
 
@@ -184,21 +229,20 @@ if (!localStorage.getStorage) {
 
     const name = document.getElementById("name");
     const firstName = document.getElementById("first-name");
-    const adress = document.getElementById("adress");
+    const address = document.getElementById("adress");
     const town = document.getElementById("town");
     const email = document.getElementById("email");
     const form = document.getElementById("form");
 
     //mes regexs ----------------------->
-    const isACorrectNameSyntax = /^(([^ ][\wÀ-Ýà-ï]+)(-| )?){1,3}[^- ]$/;
-    const isACorrectAdressSyntax = /^([^ ][\w\dÀ-Ýà-ï]+ ?)+$/;
+    const isACorrectNameSyntax = /^(([a-zA-ZÀ-Ýà-ï]+)(-| )?){1,2}[a-zA-ZÀ-Ýà-ï]+$/;
+    const isACorrectAddressSyntax = /^([\wÀ-Ýà-ï]+ ?)+[\wÀ-Ýà-ï]$/;
     const isACorrectMailSyntax = /^[\w\d](([_\.\-]?[\w\d]+)*)@([\w\d]+)(([_\.\-]?[\w\d]+)*)\.([\w]{2,})$/
 
     //fonction de controle de regex
     const regexControl = (variableToControl, typeOfRegex) => {
-        if (variableToControl.validity.valid && typeOfRegex.test(variableToControl.value)) {
+        if (typeOfRegex.test(variableToControl.value)) {
             variableToControl.style.backgroundColor = "unset";
-            console.log(variableToControl.value);
             return true;
         } else if (variableToControl.value == "") {
             variableToControl.style.backgroundColor = "unset";
@@ -217,7 +261,7 @@ if (!localStorage.getStorage) {
             { variable: name, regexControl: isACorrectNameSyntax },
             { variable: firstName, regexControl: isACorrectNameSyntax },
             { variable: town, regexControl: isACorrectNameSyntax },
-            { variable: adress, regexControl: isACorrectAdressSyntax },
+            { variable: address, regexControl: isACorrectAddressSyntax },
             { variable: email, regexControl: isACorrectMailSyntax }
         ];
         return await Promise.all(inputsToControl.map(async input => {
@@ -228,46 +272,40 @@ if (!localStorage.getStorage) {
 
 
     const formIsOk = async () => {
-        const data = await inputsAreOk();
-        let contact = {
-            prénom: name.value,
-            nom: firstName.value,
-            adresse: adress.value,
-            ville: town.value,
-            courriel: email.value
-        };
-        if (data.includes(false) || !localStorage.getStorage) {
-            alert("votre formulaire contient des erreurs");
-        } else {
-            console.log(contact);
-            alert(`chouette bientot un teddie pour melle ${name.value}`);
-        };
+        try {
+            const data = await inputsAreOk();
+            let contact = {
+                firstName: firstName.value.trim(),
+                lastName: name.value.trim(),
+                address: address.value.trim(),
+                city: town.value.trim(),
+                email: email.value.trim()
+            };
+            if (data.includes(false) || !localStorage.getStorage) {
+                throw new Error("erreur de saisie du formulaire");
+            } else {
+                return contact;
+            };
+        } catch (error) {
+            console.error(error.message);
+        }
     };
 
 
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", async (event) => {
         event.preventDefault();
-        formIsOk();
+        const contact = await formIsOk();
+        const productsId = await getProducts("productOrder");
+        const order = {};
+        order.contact = contact;
+        order.products = productsId;
+        const postOrderResponse = await postServer(order);
+        orderPage(postOrderResponse);
     });
 
-
-}
-
-const emptyPageLoader =()=>{
-    const main = document.querySelector("main");
-    main.parentNode.removeChild(main);
-
-    const body = document.querySelector("body");
-
-    const title = document.createElement("h1");
-    title.textContent="votre panier est vide";
-    title.classList.add("cart-title","cart-title--empty-cart");
-
-    const button = document.createElement("a");
-    button.textContent="retourner a l'accueil";
-    button.classList.add("cart-btn","cart-btn--empty");
-    button.setAttribute("href","../index.html");
-
-    body.appendChild(title);
-    body.appendChild(button);
+    const orderPage = async (order) => {
+        sessionStorage.setItem("order", `${JSON.stringify(order)}`);
+        window.open(`./order-confirmation.html?orderId=${order.orderId}`);
+    };
 };
+

@@ -1,80 +1,88 @@
 <!DOCTYPE html>
 <html lang="FR-fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>my basket</title>
-        <link rel="stylesheet" href="../css/style.css">
-        <link rel="stylesheet" href="../css/custom-font.css">
-        <script src="../js/cart.js" defer></script>
-    </head>
-    <body>
-      <header class="header">
-        <div class="header__logo">
-            <img class="header__logo__image" src="../images/logo/logo-orinoco.svg" alt="logo orinoco">
-            <p class="header__logo__title">Orinoco</p>    
-        </div>
-        <nav class="header__nav">
-          <a href="../index.html" class="header__nav__return-link">Home</a>
-          <a class="header__nav__panier " href="./panier.html">
-              <span class="header__nav__panier__article" id="article"></span>
-              <i class="icon-shopping-bag"></i>
-          </a>
-      </nav>
-      </header>
-      <main class="container-cart">
 
-      <table class="cart">
-        <thead class="cart__head">
-          <tr class="cart__head__row">
-            <th class="cart__head__row__heading" style="width:50%">Product</th>
-            <th class="cart__head__row__heading" style="width:10%">Price</th>
-            <th class="cart__head__row__heading" style="width:8%">Quantity</th>
-            <th class="cart__head__row__heading text-center" style="width:22%">Subtotal</th>
-            <th class="cart__head__row__heading" style="width:10%"></th>
-          </tr>
-        </thead>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>my basket</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/custom-font.css">
+  <script src="../js/cart.js" defer></script>
+</head>
 
-        <tbody class="cart__body" id="cart__body">
-        </tbody>
+<body>
+  <header class="header">
+    <div class="header__logo">
+      <img class="header__logo__image" src="../images/logo/logo-orinoco.svg" alt="logo orinoco">
+      <p class="header__logo__title">Orinoco</p>
+    </div>
+    <nav class="header__nav">
+      <a href="../index.html" class="header__nav__return-link">Home</a>
+      <a class="header__nav__panier " href="./panier.html">
+        <span class="header__nav__panier__article" id="article"></span>
+        <i class="icon-shopping-bag"></i>
+      </a>
+    </nav>
+  </header>
+  <main class="container-cart">
 
-        <tfoot class="cart__foot">
-          <tr class="cart__foot__row">
-            <td class="cart__foot__row__data"><a class="cart-btn cart-btn--continue" href="../index.html"> Continue Shopping</a></td>
-            <td class="cart__foot__row__data" colspan="2" ></td>
-            <td class="cart__foot__row__data" class="text-center" rowspan="2" id="product-total">Total = </td>
-            <td class="cart__foot__row__data"></td>
-          </tr>
-        </tfoot>
-      </table>
+    <table class="cart">
+      <thead class="cart__head">
+        <tr class="cart__head__row">
+          <th class="cart__head__row__heading" style="width:50%">Product</th>
+          <th class="cart__head__row__heading" style="width:10%">Price</th>
+          <th class="cart__head__row__heading" style="width:8%">Quantity</th>
+          <th class="cart__head__row__heading text-center" style="width:22%">Subtotal</th>
+          <th class="cart__head__row__heading" style="width:10%"></th>
+        </tr>
+      </thead>
+
+      <tbody class="cart__body" id="cart__body">
+      </tbody>
+
+      <tfoot class="cart__foot">
+        <tr class="cart__foot__row">
+          <td class="cart__foot__row__data"><a class="cart-btn cart-btn--continue" href="../index.html"> Continue
+              Shopping</a></td>
+          <td class="cart__foot__row__data" colspan="2"></td>
+          <td class="cart__foot__row__data" class="text-center" rowspan="2" id="product-total">Total = </td>
+          <td class="cart__foot__row__data"></td>
+        </tr>
+      </tfoot>
+    </table>
 
 
-      <form id="form" action="" method="get" class="form">
-          <div class="form">
-            <label for="first-name">first-name: </label>
-            <input type="text" name="first-name" id="first-name" required pattern="(([^ ][a-zA-ZÀ-Ýà-ï]*)( |-)?)([a-zA-ZÀ-Ýà-ï]*)?" minlength="3" maxlength="20">
-          </div>
-          <div class="form">
-            <label for="name">last-name: </label>
-            <input type="text" name="name" id="name" required pattern="(([^ ][a-zA-ZÀ-Ýà-ï]*)( |-)?)([a-zA-ZÀ-Ýà-ï]*)?" minlength="3" maxlength="20">
-          </div>
-          <div class="form">
-            <label for="adress">adress: </label>
-            <input type="textarea" name="adress" id="adress" required pattern="(([^ ][a-zA-Z0-9À-Ýà-ï]*)( |-)?)*" minlength="5" maxlength="40">
-          </div>
-          <div class="form">
-            <label for="town">city: </label>
-            <input type="text" name="town" id="town" required pattern="(([^ ][a-zA-Z0-9À-Ýà-ï]*)( )?)*" minlength="2" maxlength="20">
-          </div>
-          <div class="form">
-            <label for="email">Enter your email: </label>
-            <input type="email" name="email" id="email" required>
-          </div>
-          <div class="form">
-            <input id="submitForm" type="submit" value="Commander">
-          </div>
-        </form>
+    <form id="form" action="" method="get" class="form">
+      <div class="form">
+        <label for="first-name">first-name: </label>
+        <input type="text" name="first-name" id="first-name" required
+          pattern="(([a-zA-ZÀ-Ýà-ï]+)(-| )?){1,2}[a-zA-ZÀ-Ýà-ï]+" minlength="3" maxlength="20">
+      </div>
+      <div class="form">
+        <label for="name">last-name: </label>
+        <input type="text" name="name" id="name" required pattern="(([a-zA-ZÀ-Ýà-ï]+)(-| )?){1,2}[a-zA-ZÀ-Ýà-ï]+"
+          minlength="3" maxlength="20">
+      </div>
+      <div class="form">
+        <label for="adress">adress: </label>
+        <input type="textarea" name="adress" id="adress" required pattern="([\wÀ-Ýà-ï]+ ?)+[\wÀ-Ýà-ï]" minlength="5"
+          maxlength="40">
+      </div>
+      <div class="form">
+        <label for="town">city: </label>
+        <input type="text" name="town" id="town" required pattern="(([a-zA-ZÀ-Ýà-ï]+)(-| )?){1,2}[a-zA-ZÀ-Ýà-ï]+"
+          minlength="2" maxlength="20">
+      </div>
+      <div class="form">
+        <label for="email">Enter your email: </label>
+        <input type="email" name="email" id="email" required>
+      </div>
+      <div class="form">
+        <input id="submitForm" type="submit" value="Commander">
+      </div>
+    </form>
 
-        </main>
-    </body>
+  </main>
+</body>
+
 </html>

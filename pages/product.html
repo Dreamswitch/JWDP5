@@ -1,68 +1,71 @@
 <!DOCTYPE html>
 <html lang="FR-fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>product's page</title>
-        <link rel="stylesheet" href="../css/style.css">
-        <link rel="stylesheet" href="../css/custom-font.css">
-        <script src="../js/product.js" defer></script>
-    </head>
-    <body>
-        <header class="header">
-            <div class="header__logo">
-                <img class="header__logo__image" src="../images/logo/logo-orinoco.svg" alt="logo orinoco">
-                <p class="header__logo__title">Orinoco</p>    
-            </div>
-            <nav class="header__nav">
-                <a href="../index.html" class="header__nav__return-link">Home</a>
-                <a class="header__nav__panier " href="./panier.html">
-                    <span class="header__nav__panier__article" id="article"></span>
-                    <i class="icon-shopping-bag"></i>
-                </a>
-            </nav>
-        </header>
-        <main class="container">
 
-            <div class="product">
-                <div id="product-image" class="product__wallpaper"></div>
-                <div class="container--rounded">
-                    <div class="product__description">
-                        <h1 id="product-name" class="product__description__name"></h1>
-                        <p id="product-description" class="product__description__content"></p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>product's page</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/custom-font.css">
+    <script src="../js/product.js" defer></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header__logo">
+            <img class="header__logo__image" src="../images/logo/logo-orinoco.svg" alt="logo orinoco">
+            <p class="header__logo__title">Orinoco</p>
+        </div>
+        <nav class="header__nav">
+            <a href="../index.html" class="header__nav__return-link">Home</a>
+            <a class="header__nav__panier " href="./panier.html">
+                <span class="header__nav__panier__article" id="article"></span>
+                <i class="icon-shopping-bag"></i>
+            </a>
+        </nav>
+    </header>
+    <main class="container">
+
+        <div class="product">
+            <div id="product-image" class="product__wallpaper"></div>
+            <div class="container--rounded">
+                <div class="product__description">
+                    <h1 id="product-name" class="product__description__name"></h1>
+                    <p id="product-description" class="product__description__content"></p>
+                </div>
+
+                <div class="product__customer">
+                    <div class="product__customer__color">
+                        <label for="product-colors" style="display: block;">Choose a color:</label>
+                        <select id="product-colors" class="product__customer__color__choice">
+                            <option value="">--Please choose an option--</option>
+                        </select>
                     </div>
-    
-                    <div class="product__customer">
-                        <div class="product__customer__color">
-                            <label for="product-colors" style="display: block;">Choose a color:</label>
-                            <select id="product-colors" class="product__customer__color__choice">
-                                <option value="">--Please choose an option--</option>
-                            </select>
-                        </div>
-                        <div class="product__customer__quantity">
-                            <label for="quantity" style="display: block;">
-                                quantity :
-                            </label>
-                            <select name="quantity" autocomplete="off" id="product-quantity" tabindex="0" >
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                            </select>
-                        </div>
+                    <div class="product__customer__quantity">
+                        <label for="quantity" style="display: block;">
+                            quantity :
+                        </label>
+                        <select name="quantity" autocomplete="off" id="product-quantity" tabindex="0">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                        </select>
                     </div>
-    
-                    <div class="product__add-cart">
-                        <p id="product-price" class="product__add-cart__price"></p>
-                        <button id="add-cart" type="button" class="product__add-cart__button">Add to cart</button>
-                    </div>    
+                </div>
+
+                <div class="product__add-cart">
+                    <p id="product-price" class="product__add-cart__price"></p>
+                    <div id="add-cart" type="button" class="product__add-cart__button">Add to cart</div>
                 </div>
             </div>
-        </main>
-    </body>
+        </div>
+    </main>
+</body>
+
 </html>
