@@ -97,10 +97,12 @@ addCart.addEventListener("click", () => {
     widgetQuantities();
 });
 
+
 const widgetQuantities = async (quantities) => {
     const widget = document.getElementById("article");
     const teddies = await getQuantities();
     widget.textContent = `${teddies.reduce((total, teddie) => total + parseFloat(teddie.quantity), 0)}`;
+    widget.style.display="block";
 };
 
 const getQuantities = async () => {
@@ -109,7 +111,8 @@ const getQuantities = async () => {
         return produit
     }));
 };
-
+if (localStorage.getStorage) {
+    widgetQuantities();
+};
 
 CreateDom();
-widgetQuantities();

@@ -59,8 +59,7 @@ if (!localStorage.getStorage) {
                     //recupere les données dans la base
                     const teddie = await getServer(produit.id);
                     teddie.sousTotal = produit.quantity * (teddie.price / 100);
-                    inStorage.price = teddie.price/100;
-                    localStorage.setItem("getStorage")
+                    inStorage.price = teddie.price / 100;
                     createTeddieRow(teddie, produit);
                     //sauvegarde des prix du serveur
                     serverPrice[`${produit.id}`] = `${teddie.price}`;
@@ -79,6 +78,8 @@ if (!localStorage.getStorage) {
                 return await Promise.all(inStorage.map(async product => {
                     return product.id;
                 }));
+            default:
+                throw new error("problème getProducts selector");
         };
 
     };
@@ -171,7 +172,7 @@ if (!localStorage.getStorage) {
             produit.sousTotal = (teddieQuantity.value) * (teddie.price / 100);
             cartBodyRowDataQuatre.textContent = `${produit.sousTotal}`;
             produit.quantity = teddieQuantity.value;
-            savingInStorage(produit);
+            updateInStorageQunatity(produit);
             updateTotal();
             widgetQuantities();
         });
@@ -184,7 +185,7 @@ if (!localStorage.getStorage) {
         totalCase.textContent = `${teddies.reduce((total, teddie) => total + teddie.sousTotal, 0)}€`;
     };
 
-    const savingInStorage = (produit) => {
+    const updateInStorageQunatity = (produit) => {
         const inStorage = JSON.parse(localStorage.getStorage);
         inStorage.map(teddie => {
             if (teddie.id == produit.id) {
@@ -217,13 +218,19 @@ if (!localStorage.getStorage) {
 
     const widgetQuantities = async (quantities) => {
         const widget = document.getElementById("article");
-        const teddies = await getProducts("updateTotal");
-        widget.textContent = `${teddies.reduce((total, teddie) => total + parseFloat(teddie.quantity), 0)}`;
+        if(localStorage.getStorage){
+            const teddies = await getProducts("updateTotal");
+            widget.textContent = `${teddies.reduce((total, teddie) => total + parseFloat(teddie.quantity), 0)}`;
+            widget.style.display="block"
+        }else{
+            widget.style.display="none";
+        }
     };
 
     displayCart();
-    widgetQuantities();
-
+    if (localStorage.getStorage) {
+        widgetQuantities();
+    };
 
     //partie formulaire--------------------------------->
 
@@ -291,7 +298,6 @@ if (!localStorage.getStorage) {
         }
     };
 
-
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
         const contact = await formIsOk();
@@ -301,9 +307,17 @@ if (!localStorage.getStorage) {
         order.products = productsId;
         const postOrderResponse = await postServer(order);
         orderPage(postOrderResponse);
+        emptyCartLoader();
     });
 
     const orderPage = async (order) => {
+        function clearStorage(){
+            const total = document.getElementById("product-total").textContent;
+            localStorage.clear();
+            widgetQuantities();
+            return total;
+        };
+        localStorage.setItem("totalOrder", `${JSON.stringify(clearStorage())}`);
         sessionStorage.setItem("order", `${JSON.stringify(order)}`);
         window.open(`./order-confirmation.html?orderId=${order.orderId}`);
     };

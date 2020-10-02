@@ -1,0 +1,11 @@
+.container{
+
+    &--product{
+        
+        @include big{
+            width: 80%;
+            height: 90%;
+            @include flex(center,center,column);
+        }
+    }
+}

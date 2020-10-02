@@ -1,6 +1,6 @@
 .header{
     height: 8vh;
-    @include flex(space-between,center,row);
+    @include flex(space-around,center,row);
     background: $color-primary;
 
     &__logo{
@@ -30,7 +30,7 @@
             position: relative;
 
             &__article{
-                display: block;
+                display: none;
                 position: absolute;
                 background-color: $color-third;
                 border-radius: 50%;
