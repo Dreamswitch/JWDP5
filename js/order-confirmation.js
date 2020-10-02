@@ -31,34 +31,38 @@ if (!sessionStorage.order) {
         const orderNumberContainer = document.createElement("div");
         const orderNumberLeft = document.createElement("p");
         const orderNumberRight = document.createElement("p");
-        const containerTotal = document.createElement("div")
-        const containerTotalLeft = document.createElement("p")
-        const containerTotalRight = document.createElement("p")
+        const containerTotal = document.createElement("div");
+        const containerTotalLeft = document.createElement("p");
+        const containerTotalRight = document.createElement("p");
+        const containerOrder = document.createElement("div");
 
         orderContainer.classList.add("order-container");
         orderTitle.classList.add("order-container__title");
         introductionTitle.classList.add("order-container__introduction");
         congratulationText.classList.add("order-container__message");
-        orderNumberContainer.classList.add("order-container__order-container");
-        orderNumberLeft.classList.add("order-container__order-container__left");
-        orderNumberRight.classList.add("order-container__order-container__right");
-        containerTotal.classList.add("container-total");
-        containerTotalLeft.classList.add("container-total__left");
-        containerTotalRight.classList.add("container-total__right");
+        containerOrder.classList.add("order-container__container")
+        orderNumberContainer.classList.add("order-container__container__order-container");
+        orderNumberLeft.classList.add("order-container__container__order-container__left");
+        orderNumberRight.classList.add("order-container__container__order-container__right");
+        containerTotal.classList.add("order-container__container__container-total");
+        containerTotalLeft.classList.add("order-container__container__container-total__left");
+        containerTotalRight.classList.add("order-container__container__container-total__right");
 
-        orderTitle.textContent = "Congratulations!";
-        introductionTitle.textContent = `Hello ${inSessionStorage.contact.firstName},`;
+        introductionTitle.textContent = "Congratulations!";
+        orderTitle.textContent = `Hello ${inSessionStorage.contact.firstName},`;
         congratulationText.textContent = "Your sweet order has been confirmed and will be shipping in the next 3 days."
         orderNumberLeft.textContent = "Order Number:";
         orderNumberRight.textContent = `${inSessionStorage.orderId}`;
         containerTotalLeft.textContent = "In total:"
         containerTotalRight.textContent = `${total}`
 
-        main.appendChild(orderTitle);
-        main.appendChild(introductionTitle);
-        main.appendChild(congratulationText);
-        main.appendChild(orderNumberContainer);
-        main.appendChild(containerTotal);
+        main.appendChild(orderContainer);
+        orderContainer.appendChild(orderTitle);
+        orderContainer.appendChild(introductionTitle);
+        orderContainer.appendChild(congratulationText);
+        orderContainer.appendChild(containerOrder);
+        containerOrder.appendChild(orderNumberContainer);
+        containerOrder.appendChild(containerTotal);
         orderNumberContainer.appendChild(orderNumberLeft);
         orderNumberContainer.appendChild(orderNumberRight);
         containerTotal.appendChild(containerTotalLeft);

@@ -1,20 +1,21 @@
 .header{
-    height: 8vh;
+    background: linear-gradient(#ffffff 7.5vh, rgba(255, 255, 255, 0) 0) 0 0,
+    radial-gradient(circle closest-side, #FFFFFF 53%, rgba(255, 255, 255, 0) 0) 0 0,
+    radial-gradient(circle closest-side, #FFFFFF 50%, rgba(255, 255, 255, 0) 0) 2vmax 0vmax #48B;
+    background-size: 4vmax 15vh;
+    background-repeat: repeat-x;
+    height: 10%;
+    width: 100%;
     @include flex(space-around,center,row);
-    background: $color-primary;
 
     &__logo{
         @include flex(center,center,row);
-        margin-left: 2rem;
 
         &__title{
             margin-left: .5rem;
         }
         &__image{
-            width: 4rem;
-            @include small{
-            width: 4vmax;
-            }
+            height: 2rem;
         }
     }
     &__nav{
@@ -26,7 +27,6 @@
         &__panier{
             display: block;
             color: $color-secondary;
-            margin-right: 2rem;
             position: relative;
 
             &__article{
@@ -36,8 +36,7 @@
                 border-radius: 50%;
                 top: 10%;
                 color: $color-primary;
-                min-width: 1.5vmax;
-                height: 1.5vmax;
+                min-width: 1rem;
             }    
         }
     }

@@ -1,11 +1,20 @@
 .container{
-
+    @include flex(center,center,column);
     &--product{
-        
+        height: 90%;
         @include big{
-            width: 80%;
-            height: 90%;
             @include flex(center,center,column);
+            margin: auto;
+        }
+    }
+    &--home{
+        width: 100%;
+    }
+    &--order{
+        height: 90%;
+        @include big{
+            @include flex(center,center,column);
+            margin: auto;
         }
     }
 }

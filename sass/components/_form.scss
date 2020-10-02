@@ -1,0 +1,21 @@
+.form{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 600px;
+    background: hsl(0,0%,100%,.2);
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+
+    &__data{
+        margin: 0 5%;
+        width: 40%;
+        @include flex(center,unset,column);
+
+    }
+        
+}
+
+input{
+    border: 1px solid black;
+}

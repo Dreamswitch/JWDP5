@@ -1,0 +1,36 @@
+.order-container{
+    width: 80%;
+    height: 80%;
+    background: hsla(0 , 0%, 100%, .5);
+    @include flex(center,center,column);
+    &__title{
+        margin-bottom: 2rem;
+    }
+
+    &__introduction{
+        margin-bottom: 1rem;
+    }
+
+    &__message{
+        margin-bottom: 0.5rem;
+    }
+    &__container{
+        &__order-container{
+            @include flex(center,center,column);
+            &__left{
+                font-weight: 600;
+            }
+    
+            &__right{
+                font-style: italic;
+            }
+    
+        }
+        &__container-total{
+            @include flex(center,center,column);
+            &__left{
+                font-weight: 600;
+            }
+        }    
+    }
+}

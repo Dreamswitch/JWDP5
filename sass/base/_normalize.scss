@@ -5,9 +5,10 @@
 }
 
 body{
-    min-height: 100vh;
+    height: 100vh;
     margin: auto;
-    
+    min-width: 300px;
+
 }
 
 a{
@@ -15,3 +16,6 @@ a{
     color: unset;
 }
 
+label{
+    display: block;
+}

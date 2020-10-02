@@ -35,7 +35,7 @@
 }
 
 @mixin big{
-    @media all and (min-width:1025px) and (max-width:2560px){
+    @media all and (min-width:1025px){
         @content;
     }
 }
