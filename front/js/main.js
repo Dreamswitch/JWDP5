@@ -27,7 +27,7 @@ const getProducts = async () => {
             throw new Error(response.status);
         }
         const data = await response.json();
-        return data ;
+        return data;
     } catch (error) {
         console.log(error);
     };
@@ -86,24 +86,23 @@ const postDomElements = async () => {
     }
 };
 
-
-if (localStorage.getStorage) {
-    const widgetQuantities = async (quantities) => {
-        const widget = document.getElementById("article");
-        const teddies = await getQuantities();
-        widget.textContent = `${teddies.reduce((total, teddie) => total + parseFloat(teddie.quantity), 0)}`;
-        widget.style.display = "block";
-    };
-
-    const getQuantities = async () => {
-        const inStorage = JSON.parse(localStorage.getStorage);
-        return await Promise.all(inStorage.map(produit => {
-            return produit
-        }));
-    };
-
-    widgetQuantities();
+const widgetQuantities = async (quantities) => {
+    const widget = document.getElementById("article");
+    const teddies = await getQuantities();
+    widget.textContent = `${teddies.reduce((total, teddie) => total + parseFloat(teddie.quantity), 0)}`;
+    widget.style.display = "block";
 };
 
+const getQuantities = async () => {
+    const inStorage = JSON.parse(localStorage.getStorage);
+    return await Promise.all(inStorage.map(produit => {
+        return produit
+    }));
+};
+
+
+if (localStorage.getStorage) {
+    widgetQuantities();
+};
 
 postDomElements();
