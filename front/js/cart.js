@@ -247,7 +247,7 @@ if (!localStorage.getStorage) {
     //mes regexs ----------------------->
     const isACorrectNameSyntax = /^(([a-zA-ZÀ-Ýà-ï]+)(-| )?){1,2}[a-zA-ZÀ-Ýà-ï]+$/;
     const isACorrectAddressSyntax = /^([\wÀ-Ýà-ï]+ ?)+[\wÀ-Ýà-ï]$/;
-    const isACorrectMailSyntax = /^[\w\d](([_\.\-]?[\w\d]+)*)@([\w\d]+)(([_\.\-]?[\w\d]+)*)\.([\w]{2,})$/
+    const isACorrectMailSyntax = /^[\w](([_\.\-]?[\w]+)*)@([\w]+)(([_\.\-]?[\w]+)*)\.([\w]{2,})$/
 
     //fonction de controle de regex
     const regexControl = (variableToControl, typeOfRegex) => {

@@ -1,11 +1,11 @@
-const emptyCartLoader = () => {
+const errorServerConnexion = () => {
     const main = document.querySelector("main");
     main.parentNode.removeChild(main);
 
     const body = document.querySelector("body");
 
     const title = document.createElement("h1");
-    title.textContent = "Sorry, server is out ;(";
+    title.textContent = "Sorry, server is done ;(";
     title.classList.add("cart-title", "cart-title--empty-cart");
 
     const button = document.createElement("a");
@@ -27,15 +27,15 @@ const getProducts = async () => {
             throw new Error(response.status);
         }
         const data = await response.json();
-        console.log(data);
+        return data ;
     } catch (error) {
         console.log(error);
-    }
-}
+    };
+};
 
 const postDomElements = async () => {
     try {
-        const produits = await getProducts()
+        const produits = await getProducts();
         if (produits) {
             produits.map(produit => {
 
@@ -78,7 +78,7 @@ const postDomElements = async () => {
 
             });
         } else {
-            emptyCartLoader();
+            errorServerConnexion();
             throw new Error("server is done");
         };
     } catch (error) {

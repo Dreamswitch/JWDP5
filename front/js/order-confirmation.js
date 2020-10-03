@@ -1,4 +1,4 @@
-const emptyCartLoader = () => {
+const orderNotFound = () => {
     const main = document.getElementById("main");
 
     const title = document.createElement("h1");
@@ -14,8 +14,9 @@ const emptyCartLoader = () => {
     main.appendChild(button);
 };
 
+// si le session storage n'existe pas ,affiche page not found
 if (!sessionStorage.order) {
-    emptyCartLoader();
+    orderNotFound();
 } else {
     const createPage = async () => {
         const inSessionStorage = JSON.parse(sessionStorage.order);
