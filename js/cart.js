@@ -6,11 +6,11 @@ const emptyCartLoader = () => {
     const body = document.querySelector("body");
 
     const title = document.createElement("h1");
-    title.textContent = "votre panier est vide";
+    title.textContent = "Your cart is empty";
     title.classList.add("cart-title", "cart-title--empty-cart");
 
     const button = document.createElement("a");
-    button.textContent = "retourner a l'accueil";
+    button.textContent = "Go to Home";
     button.classList.add("cart-btn", "cart-btn--empty");
     button.setAttribute("href", "../index.html");
 
@@ -41,8 +41,8 @@ if (!localStorage.getStorage) {
             if (response.ok) {
                 return data;
             } else {
-                throw new error("probleme communication avec le serveur")
-            }
+                throw new error("problem server transmission");
+            };
         } catch (error) {
             console.error(error);
         }
@@ -172,7 +172,7 @@ if (!localStorage.getStorage) {
             produit.sousTotal = (teddieQuantity.value) * (teddie.price / 100);
             cartBodyRowDataQuatre.textContent = `${produit.sousTotal}`;
             produit.quantity = teddieQuantity.value;
-            updateInStorageQunatity(produit);
+            updateInStorageQuantity(produit);
             updateTotal();
             widgetQuantities();
         });
@@ -185,7 +185,7 @@ if (!localStorage.getStorage) {
         totalCase.textContent = `${teddies.reduce((total, teddie) => total + teddie.sousTotal, 0)}€`;
     };
 
-    const updateInStorageQunatity = (produit) => {
+    const updateInStorageQuantity = (produit) => {
         const inStorage = JSON.parse(localStorage.getStorage);
         inStorage.map(teddie => {
             if (teddie.id == produit.id) {
@@ -210,27 +210,30 @@ if (!localStorage.getStorage) {
         });
     };
 
+    // transmet le changement de total au DOM
     const updateTotal = async () => {
         const totalCase = document.getElementById('product-total');
         const teddies = await getProducts("updateTotal");
         totalCase.textContent = `${teddies.reduce((total, teddie) => total + teddie.sousTotal, 0)}€`;
     };
 
+    //affiche le nombre d'éléments présents dans le panier
     const widgetQuantities = async (quantities) => {
         const widget = document.getElementById("article");
-        if(localStorage.getStorage){
+        if (localStorage.getStorage) {
             const teddies = await getProducts("updateTotal");
             widget.textContent = `${teddies.reduce((total, teddie) => total + parseFloat(teddie.quantity), 0)}`;
-            widget.style.display="block"
-        }else{
-            widget.style.display="none";
+            widget.style.display = "block"
+        } else {
+            widget.style.display = "none";
         }
     };
-
-    displayCart();
+    //si la clée existe dans le localStorage
     if (localStorage.getStorage) {
         widgetQuantities();
     };
+
+    displayCart();
 
     //partie formulaire--------------------------------->
 
@@ -289,7 +292,7 @@ if (!localStorage.getStorage) {
                 email: email.value.trim()
             };
             if (data.includes(false) || !localStorage.getStorage) {
-                throw new Error("erreur de saisie du formulaire");
+                throw new Error("error input formData");
             } else {
                 return contact;
             };
@@ -298,20 +301,32 @@ if (!localStorage.getStorage) {
         }
     };
 
+    //controle que les données saisies respectes la syntaxe attendue
+    //et que les patterns HTML n'aient pas été éffacés
     form.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        const contact = await formIsOk();
-        const productsId = await getProducts("productOrder");
-        const order = {};
-        order.contact = contact;
-        order.products = productsId;
-        const postOrderResponse = await postServer(order);
-        orderPage(postOrderResponse);
-        emptyCartLoader();
+        try {
+            event.preventDefault();
+            const contact = await formIsOk();
+            const productsId = await getProducts("productOrder");
+            if (contact) {
+                const order = {};
+                order.contact = contact;
+                order.products = productsId;
+                const postOrderResponse = await postServer(order);
+                orderPage(postOrderResponse);
+                emptyCartLoader();
+            } else {
+                throw new Error('HTML "pattern" erased by user');
+            };
+        } catch (error) {
+            console.error(error.message);
+        };
     });
 
+    //si tout est OK, 
+    //supprime le localStorage,update le widget,sauvegarde la commande dans le sessionStorage et le total dans le localStorage
     const orderPage = async (order) => {
-        function clearStorage(){
+        function clearStorage() {
             const total = document.getElementById("product-total").textContent;
             localStorage.clear();
             widgetQuantities();

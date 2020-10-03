@@ -1,4 +1,4 @@
-release v1.0
+release v1.1
 
 # Orinoco #
 

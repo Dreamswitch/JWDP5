@@ -2,18 +2,17 @@ const emptyCartLoader = () => {
     const main = document.getElementById("main");
 
     const title = document.createElement("h1");
-    title.textContent = "error 404";
+    title.textContent = "error 404 : Page not found";
     title.classList.add("cart-title", "cart-title--empty-cart");
 
     const button = document.createElement("a");
-    button.textContent = "retourner a l'accueil";
+    button.textContent = "Go to Home";
     button.classList.add("cart-btn", "cart-btn--empty");
     button.setAttribute("href", "../index.html");
 
     main.appendChild(title);
     main.appendChild(button);
 };
-
 
 if (!sessionStorage.order) {
     emptyCartLoader();
