@@ -1,3 +1,21 @@
+const errorServerConnexion = () => {
+    const main = document.querySelector("main");
+    main.parentNode.removeChild(main);
+
+    const body = document.querySelector("body");
+
+    const title = document.createElement("h1");
+    title.textContent = "Sorry, server is done ;(";
+    title.classList.add("cart-title", "cart-title--empty-cart");
+
+    const button = document.createElement("a");
+    button.textContent = "Try again";
+    button.classList.add("cart-btn", "cart-btn--empty");
+    button.setAttribute("href", "../pages/panier.html");
+
+    body.appendChild(title);
+    body.appendChild(button);
+};
 
 const emptyCartLoader = () => {
     const main = document.querySelector("main");
@@ -21,9 +39,14 @@ const emptyCartLoader = () => {
 const serverPrice = [];
 
 const getServer = async function (produitId) {
-    let response = await fetch(`http://localhost:3000/api/teddies/${produitId}`);
-    let data = await response.json();
-    return data;
+    try {
+        let response = await fetch(`http://localhost:3000/api/teddies/${produitId}`);
+        let data = await response.json();
+        return data;    
+    } catch (error) {
+        console.error(error.message);
+        errorServerConnexion();
+    }
 };
 
 const postServer = async (order) => {

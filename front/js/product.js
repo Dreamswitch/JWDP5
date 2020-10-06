@@ -62,7 +62,7 @@ const storageControl = () => {
     let StorageLength = localStorage.length;
 
     //controle si le panier n'est pas vide
-    if (StorageLength !== 0) {
+    if (StorageLength !== 0 && localStorage.getStorage) {
         let inStorage = JSON.parse(localStorage.getStorage);
         let existe = false;
 
